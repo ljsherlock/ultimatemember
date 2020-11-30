@@ -322,6 +322,8 @@ if ( ! class_exists( 'um\core\Fields' ) ) {
 						$fields[ $global_id ][ $key ] = $val;
 					}
 				}
+				// var_dump($position);
+				// die(var_dump($fields));
 
 				// add field to form
 				UM()->query()->update_attr( 'custom_fields', $form_id, $fields );
@@ -2354,7 +2356,7 @@ if ( ! class_exists( 'um\core\Fields' ) ) {
 
 						if ( $this->is_error( $key ) ) {
 							$output .= $this->field_error( $this->show_error( $key ) );
-						} elseif ( $this->is_notice( $key ) ) {
+						}else if ( $this->is_notice( $key ) ) {
 							$output .= $this->field_notice( $this->show_notice( $key ) );
 						}
 
@@ -3924,7 +3926,10 @@ if ( ! class_exists( 'um\core\Fields' ) ) {
 									}
 									$output .= '</div><div class="um-clear"></div>';
 
-								} else {
+								} else if ($cols_num == 3) {
+								} else if ($cols_num == 4) {
+								} else if ($cols_num == 5) {
+								} else if ($cols_num == 6) {
 
 									$output .= '<div class="um-col-131">';
 									$col1_fields = $this->get_fields_in_column( $subrow_fields, 1 );
@@ -3951,6 +3956,34 @@ if ( ! class_exists( 'um\core\Fields' ) ) {
 											$output .= $this->edit_field( $key, $data );
 										}
 									}
+									$output .= '</div>';
+
+									$output .= '<div class="um-col-134">';
+									$col1_fields = $this->get_fields_in_column( $subrow_fields, 1 );
+									if ( $col1_fields ) {
+										foreach ( $col1_fields as $key => $data ) {
+											$output .= $this->edit_field( $key, $data );
+										}
+									}
+									$output .= '</div>';
+
+									$output .= '<div class="um-col-135">';
+									$col2_fields = $this->get_fields_in_column( $subrow_fields, 2 );
+									if ( $col2_fields ) {
+										foreach ( $col2_fields as $key => $data ) {
+											$output .= $this->edit_field( $key, $data );
+										}
+									}
+									$output .= '</div>';
+
+									$output .= '<div class="um-col-136">';
+									$col3_fields = $this->get_fields_in_column( $subrow_fields, 3 );
+									if ( $col3_fields ) {
+										foreach ( $col3_fields as $key => $data ) {
+											$output .= $this->edit_field( $key, $data );
+										}
+									}
+
 									$output .= '</div><div class="um-clear"></div>';
 
 								}
@@ -4405,10 +4438,11 @@ if ( ! class_exists( 'um\core\Fields' ) ) {
 									}
 									$output .= '</div><div class="um-clear"></div>';
 
-								} else {
+								} elseif ( $cols_num == 3 ) {
 
 									$output .= '<div class="um-col-131">';
 									$col1_fields = $this->get_fields_in_column( $subrow_fields, 1 );
+
 									if ( $col1_fields ) {
 										foreach ( $col1_fields as $key => $data ) {
 
@@ -4421,6 +4455,7 @@ if ( ! class_exists( 'um\core\Fields' ) ) {
 
 									$output .= '<div class="um-col-132">';
 									$col2_fields = $this->get_fields_in_column( $subrow_fields, 2 );
+
 									if ( $col2_fields ) {
 										foreach ( $col2_fields as $key => $data ) {
 
@@ -4433,6 +4468,7 @@ if ( ! class_exists( 'um\core\Fields' ) ) {
 
 									$output .= '<div class="um-col-133">';
 									$col3_fields = $this->get_fields_in_column( $subrow_fields, 3 );
+
 									if ( $col3_fields ) {
 										foreach ( $col3_fields as $key => $data ) {
 
@@ -4442,14 +4478,216 @@ if ( ! class_exists( 'um\core\Fields' ) ) {
 										}
 									}
 									$output .= '</div><div class="um-clear"></div>';
+								
+								} elseif ( $cols_num == 4 ) {
 
+									$output .= '<div class="um-col-141">';
+									$col1_fields = $this->get_fields_in_column( $subrow_fields, 1 );
+
+									if ( $col1_fields ) {
+										foreach ( $col1_fields as $key => $data ) {
+
+											$data = $this->view_field_output( $data );
+											$output .= $this->view_field( $key, $data );
+
+										}
+									}
+									$output .= '</div>';
+
+									$output .= '<div class="um-col-142">';
+									$col2_fields = $this->get_fields_in_column( $subrow_fields, 2 );
+
+									if ( $col2_fields ) {
+										foreach ( $col2_fields as $key => $data ) {
+
+											$data = $this->view_field_output( $data );
+											$output .= $this->view_field( $key, $data );
+
+										}
+									}
+									$output .= '</div>';
+
+									$output .= '<div class="um-col-143">';
+									$col3_fields = $this->get_fields_in_column( $subrow_fields, 3 );
+
+									if ( $col3_fields ) {
+										foreach ( $col3_fields as $key => $data ) {
+
+											$data = $this->view_field_output( $data );
+											$output .= $this->view_field( $key, $data );
+
+										}
+									}
+									$output .= '</div>';
+
+									$output .= '<div class="um-col-144">';
+									$col4_fields = $this->get_fields_in_column( $subrow_fields, 4 );
+
+									if ( $col4_fields ) {
+										foreach ( $col4_fields as $key => $data ) {
+
+											$data = $this->view_field_output( $data );
+											$output .= $this->view_field( $key, $data );
+
+										}
+									}
+									$output .= '</div><div class="um-clear"></div>';
+
+								} elseif ( $cols_num == 5 ) {
+
+									$output .= '<div class="um-col-151">';
+									$col1_fields = $this->get_fields_in_column( $subrow_fields, 1 );
+
+									if ( $col1_fields ) {
+										foreach ( $col1_fields as $key => $data ) {
+
+											$data = $this->view_field_output( $data );
+											$output .= $this->view_field( $key, $data );
+
+										}
+									}
+									$output .= '</div>';
+
+									$output .= '<div class="um-col-152">';
+									$col2_fields = $this->get_fields_in_column( $subrow_fields, 2 );
+
+									if ( $col2_fields ) {
+										foreach ( $col2_fields as $key => $data ) {
+
+											$data = $this->view_field_output( $data );
+											$output .= $this->view_field( $key, $data );
+
+										}
+									}
+									$output .= '</div>';
+
+									$output .= '<div class="um-col-153">';
+									$col3_fields = $this->get_fields_in_column( $subrow_fields, 3 );
+
+									if ( $col3_fields ) {
+										foreach ( $col3_fields as $key => $data ) {
+
+											$data = $this->view_field_output( $data );
+											$output .= $this->view_field( $key, $data );
+
+										}
+									}
+									$output .= '</div>';
+
+									$output .= '<div class="um-col-154">';
+									$col4_fields = $this->get_fields_in_column( $subrow_fields, 4 );
+
+									if ( $col4_fields ) {
+										foreach ( $col4_fields as $key => $data ) {
+
+											$data = $this->view_field_output( $data );
+											$output .= $this->view_field( $key, $data );
+
+										}
+									}
+									$output .= '</div>';
+
+									$output .= '<div class="um-col-155">';
+									$col5_fields = $this->get_fields_in_column( $subrow_fields, 5 );
+
+									if ( $col5_fields ) {
+										foreach ( $col5_fields as $key => $data ) {
+
+											$data = $this->view_field_output( $data );
+											$output .= $this->view_field( $key, $data );
+
+										}
+									}
+									$output .= '</div><div class="um-clear"></div>';
+
+								} elseif ( $cols_num == 6 ) {
+
+									$output .= '<div class="um-col-161">';
+									$col1_fields = $this->get_fields_in_column( $subrow_fields, 1 );
+
+									if ( $col1_fields ) {
+										foreach ( $col1_fields as $key => $data ) {
+
+											$data = $this->view_field_output( $data );
+											$output .= $this->view_field( $key, $data );
+
+										}
+									}
+									$output .= '</div>';
+
+									$output .= '<div class="um-col-162">';
+									$col2_fields = $this->get_fields_in_column( $subrow_fields, 2 );
+
+									if ( $col2_fields ) {
+										foreach ( $col2_fields as $key => $data ) {
+
+											$data = $this->view_field_output( $data );
+											$output .= $this->view_field( $key, $data );
+
+										}
+									}
+									$output .= '</div>';
+
+									$output .= '<div class="um-col-163">';
+									$col3_fields = $this->get_fields_in_column( $subrow_fields, 3 );
+
+									if ( $col3_fields ) {
+										foreach ( $col3_fields as $key => $data ) {
+
+											$data = $this->view_field_output( $data );
+											$output .= $this->view_field( $key, $data );
+
+										}
+									}
+									$output .= '</div>';
+
+									$output .= '<div class="um-col-164">';
+									$col4_fields = $this->get_fields_in_column( $subrow_fields, 4 );
+
+									if ( $col4_fields ) {
+										foreach ( $col4_fields as $key => $data ) {
+
+											$data = $this->view_field_output( $data );
+											$output .= $this->view_field( $key, $data );
+
+										}
+									}
+									$output .= '</div>';
+
+									$output .= '<div class="um-col-165">';
+									$col5_fields = $this->get_fields_in_column( $subrow_fields, 5 );
+
+									if ( $col5_fields ) {
+										foreach ( $col5_fields as $key => $data ) {
+
+											$data = $this->view_field_output( $data );
+											$output .= $this->view_field( $key, $data );
+
+										}
+									}
+									$output .= '</div>';
+
+									$output .= '<div class="um-col-166">';
+									$col6_fields = $this->get_fields_in_column( $subrow_fields, 6 );
+
+									if ( $col6_fields ) {
+										foreach ( $col6_fields as $key => $data ) {
+
+											$data = $this->view_field_output( $data );
+											$output .= $this->view_field( $key, $data );
+
+										}
+									}
+									$output .= '</div><div class="um-clear"></div>';
 								}
+
 
 							}
 
 						}
 
 						$output .= '</div>';
+						
 
 					}
 

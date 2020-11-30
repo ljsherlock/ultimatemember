@@ -398,10 +398,13 @@ if ( ! class_exists( 'um\admin\core\Admin_Builder' ) ) {
 						<div class="um-admin-drag-rowsub">
 
 							<!-- Column Layout -->
-							<div class="um-admin-drag-ctrls columns">
+							<div class="um-admin-drag-ctrls columns blaab blaabs">
 								<a href="javascript:void(0);" class="active" data-cols="1"></a>
 								<a href="javascript:void(0);" data-cols="2"></a>
 								<a href="javascript:void(0);" data-cols="3"></a>
+								<a href="javascript:void(0);" data-cols="4"></a>
+								<a href="javascript:void(0);" data-cols="5"></a>
+								<a href="javascript:void(0);" data-cols="6"></a>
 							</div>
 
 							<!-- Sub Row Actions -->
@@ -493,7 +496,7 @@ if ( ! class_exists( 'um\admin\core\Admin_Builder' ) ) {
 
 										}
 
-										for ( $i = 1; $i <= 3; $i++ ) {
+										for ( $i = 1; $i <= 6; $i++ ) {
 											echo '<a href="javascript:void(0);" data-cols="'.$i.'" ';
 											if ( $col_num == $i ) echo 'class="active"';
 											echo '></a>';

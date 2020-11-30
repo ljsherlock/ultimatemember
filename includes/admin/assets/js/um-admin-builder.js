@@ -3,7 +3,7 @@
  *
  * @returns {boolean}
  */
-function um_admin_update_builder() {
+ function um_admin_update_builder() {
 	var form_id = jQuery('.um-admin-builder').data('form_id');
 
 	jQuery('.tipsy').hide();

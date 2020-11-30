@@ -406,7 +406,22 @@ div.uimob500 .um-col-121,
 div.uimob500 .um-col-122,
 div.uimob500 .um-col-131,
 div.uimob500 .um-col-132,
-div.uimob500 .um-col-133 {
+div.uimob500 .um-col-133,
+div.uimob500 .um-col-141,
+div.uimob500 .um-col-142,
+div.uimob500 .um-col-143,
+div.uimob500 .um-col-144,
+div.uimob500 .um-col-151,
+div.uimob500 .um-col-152,
+div.uimob500 .um-col-153,
+div.uimob500 .um-col-154,
+div.uimob500 .um-col-155,
+div.uimob500 .um-col-161,
+div.uimob500 .um-col-162,
+div.uimob500 .um-col-163,
+div.uimob500 .um-col-164,
+div.uimob500 .um-col-165,
+div.uimob500 .um-col-166 {
 	float: none;
 	width: 100%;
 	margin: 0;
@@ -436,6 +451,26 @@ div.uimob500 .um-account-meta {
 /**
 	for 800px and below
 **/
+
+div.uimob800 .um-col-141,
+div.uimob800 .um-col-142,
+div.uimob800 .um-col-143,
+div.uimob800 .um-col-144,
+div.uimob800 .um-col-151,
+div.uimob800 .um-col-152,
+div.uimob800 .um-col-153,
+div.uimob800 .um-col-154,
+div.uimob800 .um-col-155,
+div.uimob800 .um-col-161,
+div.uimob800 .um-col-162,
+div.uimob800 .um-col-163,
+div.uimob800 .um-col-164,
+div.uimob800 .um-col-165,
+div.uimob800 .um-col-166 {
+	float: none;
+	width: 45%;
+	margin: 0 2.5%;
+}
 
 div.uimob800 .um-profile-nav {
 	padding: 0;

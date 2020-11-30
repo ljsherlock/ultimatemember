@@ -142,11 +142,27 @@
 
 .um-admin-drag-col.cols-1 {width: 100%;}
 .um-admin-drag-col.cols-1.cols-last {width: 100%;}
-.um-admin-drag-col.cols-1.cols-middle {}
 
 .um-admin-drag-col.cols-2 {width: 49%;margin: 0 1% 0 0}
 .um-admin-drag-col.cols-2.cols-last {width: 49%;margin: 0 0 0 1%;}
-.um-admin-drag-col.cols-2.cols-middle {}
+
+.um-admin-drag-col.cols-4 { width: 23.5%; margin: 0 1% 0 0; }
+.um-admin-drag-col.cols-4.cols-middle { margin: 0 1%; }
+.um-admin-drag-col.cols-4.cols-last { margin: 0 0 0 1%; }
+
+.um-admin-drag-col.cols-5 { width: 19.2%; }
+.um-admin-drag-col.cols-5.cols-second { margin-left: 1%; }
+.um-admin-drag-col.cols-5.cols-middle { margin: 0 1% }
+.um-admin-drag-col.cols-5.cols-forth { margin-right: 1%; }
+
+.um-admin-drag-col.cols-6 { width: 15.5%; }
+/* 2nd column */
+.um-admin-drag-col.cols-6.cols-second { margin-left: 1%; margin-right: .5%; }
+/* middle columns 3 and 4 */
+.um-admin-drag-col.cols-6.cols-middle, 
+.um-admin-drag-col.cols-6.cols-middle { margin: 0 .5%; }
+/* 5th column */
+.um-admin-drag-col.cols-6.cols-fifth { margin-left: .5%; margin-right: 1%; }
 
 .um-admin-drag-addrow {
 	text-align: center;

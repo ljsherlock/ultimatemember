@@ -138,4 +138,9 @@ jQuery(document).ready(function() {
 		e.currentTarget.click();
 	});
 
+	jQuery('#printPDF').click(function (e) {
+		window.print();
+		return false;
+	});
+
 });

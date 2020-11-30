@@ -51,10 +51,26 @@ function UM_Drag_and_Drop() {
 			jQuery('#publish').attr('disabled','disabled');
 			
 			row = jQuery(this);
-			row.find('.um-admin-drag-col').removeClass('cols-1 cols-2 cols-3 cols-last cols-middle');
+			row.find('.um-admin-drag-col').removeClass('cols-1 cols-2 cols-3 cols-4 cols-5 cols-6 cols-last cols-middle cols-second cols-third cols-forth cols-fifth');
 			row.find('.um-admin-drag-col').addClass('cols-' + row.find('.um-admin-drag-col').length );
 			row.find('.um-admin-drag-col:last').addClass('cols-last');
-			if ( row.find('.um-admin-drag-col').length == 3 ) {row.find('.um-admin-drag-col:eq(1)').addClass('cols-middle');}
+
+			if ( row.find('.um-admin-drag-col').length == 3 ) {
+				row.find('.um-admin-drag-col:eq(1)').addClass('cols-middle');
+			} else if ( row.find('.um-admin-drag-col').length == 4 ) {
+				row.find('.um-admin-drag-col:eq(1)').addClass('cols-middle');
+				row.find('.um-admin-drag-col:eq(2)').addClass('cols-middle');
+			} else if ( row.find('.um-admin-drag-col').length == 5 ) {
+				row.find('.um-admin-drag-col:eq(1)').addClass('cols-second');
+				row.find('.um-admin-drag-col:eq(2)').addClass('cols-middle');
+				row.find('.um-admin-drag-col:eq(3)').addClass('cols-forth');
+			} else if ( row.find('.um-admin-drag-col').length == 6 ) {
+				row.find('.um-admin-drag-col:eq(1)').addClass('cols-second');
+				row.find('.um-admin-drag-col:eq(2)').addClass('cols-third cols-middle');
+				row.find('.um-admin-drag-col:eq(3)').addClass('cols-forth cols-middle');
+				row.find('.um-admin-drag-col:eq(4)').addClass('cols-fifth');
+				console.log('Middle, bitch!')
+			}
 			
 			UM_Change_Field_Col();
 			
@@ -120,18 +136,50 @@ function UM_Change_Field_Col(){
 	jQuery('.um-admin-drag-col .um-admin-drag-fld').each(function(){
 		cols =  jQuery(this).parents('.um-admin-drag-rowsub').find('.um-admin-drag-col').length;
 		col = jQuery(this).parents('.um-admin-drag-col');
+		
+		console.log('this happens when row length is changed');
+
+		var index = jQuery(this).parents('.um-admin-drag-rowsub').find('.um-admin-drag-col').index(jQuery(this).parents('.um-admin-drag-col'));
+		console.log("Hello, my index is: " + index);
+		
 		if ( col.hasClass('cols-last') ) {
+
 			if ( cols == 1 ) {
 				saved_col = 1;
+			} else if (cols == 6) {
+				saved_col = 6
+			} else if (cols == 5) {
+				saved_col = 5
+			} else if (cols == 4) {
+				saved_col = 4
+			} else if (cols == 3) {
+				saved_col = 3
+			} else if (cols == 2) {
+				saved_col = 2
 			}
-			if ( cols == 3 ) {
-				saved_col = 3;
-			} else if ( cols == 2 ) {
-				saved_col = 2;
+		} else if ( index == 4 && cols == 6 ) {
+			saved_col = 5
+		} else if ( index == 3 ) {
+			saved_col = 4
+		} else if ( index == 2 ) {
+			saved_col = 3
+		} else if ( index == 1 ) {
+			saved_col = 2
+		} else if ( col[0].classList.contains('cols-middle') ) {
+			
+			console.log('middle '+cols);
+
+			if(cols == 5) {
+				saved_col = 3
+			} else if (cols == 3) {
+				saved_col = 2
 			}
-		} else if ( col.hasClass('cols-middle') && cols == 3 ) {
-			saved_col = 2;
+
 		} else {
+			console.log(col[0].classList);
+			console.log(col[0].classList.contains('cols-5'));
+			console.log(col)
+			console.log('This field will go into col 1');
 			saved_col = 1;
 		}
 
@@ -165,10 +213,26 @@ function UM_Rows_Refresh(){
 		
 			subrow = jQuery(this);
 			
-			subrow.find('.um-admin-drag-col').removeClass('cols-1 cols-2 cols-3 cols-last cols-middle');
+			subrow.find('.um-admin-drag-col').removeClass('cols-1 cols-2 cols-3 cols-4 cols-5 cols-6 cols-last cols-middle cols-second cols-third cols-forth cols-fifth');
 			subrow.find('.um-admin-drag-col').addClass('cols-' + subrow.find('.um-admin-drag-col').length );
 			subrow.find('.um-admin-drag-col:last').addClass('cols-last');
-			if ( subrow.find('.um-admin-drag-col').length == 3 ) {subrow.find('.um-admin-drag-col:eq(1)').addClass('cols-middle');}
+
+			if ( subrow.find('.um-admin-drag-col').length == 3 ) {
+				subrow.find('.um-admin-drag-col:eq(1)').addClass('cols-middle');
+			} else if ( subrow.find('.um-admin-drag-col').length == 4 ) {
+				subrow.find('.um-admin-drag-col:eq(1)').addClass('cols-second cols-middle');
+				subrow.find('.um-admin-drag-col:eq(2)').addClass('cols-third cols-middle');
+			} else if ( subrow.find('.um-admin-drag-col').length == 5 ) {
+				subrow.find('.um-admin-drag-col:eq(1)').addClass('cols-second');
+				subrow.find('.um-admin-drag-col:eq(2)').addClass('cols-middle');
+				subrow.find('.um-admin-drag-col:eq(3)').addClass('cols-forth');
+			} else if ( subrow.find('.um-admin-drag-col').length == 6 ) {
+				subrow.find('.um-admin-drag-col:eq(1)').addClass('cols-second');
+				subrow.find('.um-admin-drag-col:eq(2)').addClass('cols-third cols-middle');
+				subrow.find('.um-admin-drag-col:eq(3)').addClass('cols-forth cols-middle');
+				subrow.find('.um-admin-drag-col:eq(4)').addClass('cols-fifth');
+				console.log('Middle, bitch!')
+			}
 			
 			if ( !col_num ) {
 			col_num = subrow.find('.um-admin-drag-col').length;
@@ -200,12 +264,12 @@ function UM_Rows_Refresh(){
 		if ( !jQuery(this).hasClass('group') ) {
 			var group = jQuery(this).data('group');
 			if ( group != '' ) {
-			if ( jQuery('.um-admin-drag-fld.um-field-type-group.' + group ).find('.um-admin-drag-group').find( jQuery(this) ).length == 0 ) {
-				jQuery(this).appendTo(  jQuery('.um-admin-drag-fld.um-field-type-group.' + group ).find('.um-admin-drag-group') );
-			} else {
-				//jQuery(this).prependTo(  jQuery('.um-admin-drag-fld.um-field-type-group.' + group ).find('.um-admin-drag-group') );
-			}
-			jQuery('.um_update_order_fields').append('<input type="hidden" name="um_group_'+jQuery(this).data('key')+'" id="um_group_'+jQuery(this).data('key')+'" value="'+group+'" />');
+				if ( jQuery('.um-admin-drag-fld.um-field-type-group.' + group ).find('.um-admin-drag-group').find( jQuery(this) ).length == 0 ) {
+					jQuery(this).appendTo(  jQuery('.um-admin-drag-fld.um-field-type-group.' + group ).find('.um-admin-drag-group') );
+				} else {
+					//jQuery(this).prependTo(  jQuery('.um-admin-drag-fld.um-field-type-group.' + group ).find('.um-admin-drag-group') );
+				}
+				jQuery('.um_update_order_fields').append('<input type="hidden" name="um_group_'+jQuery(this).data('key')+'" id="um_group_'+jQuery(this).data('key')+'" value="'+group+'" />');
 			} else {
 			jQuery('.um_update_order_fields').append('<input type="hidden" name="um_group_'+jQuery(this).data('key')+'" id="um_group_'+jQuery(this).data('key')+'" value="" />');
 			}
@@ -217,7 +281,18 @@ function UM_Rows_Refresh(){
 		row = '_um_row_'+row;
 		
 		saved_col = jQuery(this).data('column');
+
+		console.log(this.className +'saved column = ' + saved_col);
 		
+		if ( saved_col == 6 ){
+			jQuery(this).appendTo( jQuery(this).parents('.um-admin-drag-rowsub').find('.um-admin-drag-col:eq(5)') );
+		}
+		if ( saved_col == 5 ){
+			jQuery(this).appendTo( jQuery(this).parents('.um-admin-drag-rowsub').find('.um-admin-drag-col:eq(4)') );
+		}
+		if ( saved_col == 4 ){
+			jQuery(this).appendTo( jQuery(this).parents('.um-admin-drag-rowsub').find('.um-admin-drag-col:eq(3)') );
+		}
 		if ( saved_col == 3 ){
 			jQuery(this).appendTo( jQuery(this).parents('.um-admin-drag-rowsub').find('.um-admin-drag-col:eq(2)') );
 		}
@@ -287,27 +362,84 @@ jQuery(document).ready(function() {
 	jQuery( document.body ).on('click', 'a.um-admin-drag-add-field', function() {
 		in_row = jQuery(this).parents('.um-admin-drag-row').index();
 		in_sub_row = jQuery(this).parents('.um-admin-drag-rowsub').index();
+		
 		if ( jQuery(this).parents('.um-admin-drag-rowsub').find('.um-admin-drag-col').length == 1 ) {
-			in_column = 1;
+			in_column = 1; console.log('we in column 1, bish!');
 		} else {
-			if ( jQuery(this).parents('.um-admin-drag-col').hasClass('cols-middle')){
+			if ( jQuery(this).parents('.um-admin-drag-col').hasClass('cols-second')) {
 				in_column = 2;
-			} else if ( jQuery(this).parents('.um-admin-drag-col').hasClass('cols-last') ) {
+			} else if ( jQuery(this).parents('.um-admin-drag-col').hasClass('cols-forth')) {
+				in_column = 4;
+			} else if ( jQuery(this).parents('.um-admin-drag-col').hasClass('cols-fifth')) {
+				in_column = 5;
+			} else if ( jQuery(this).parents('.um-admin-drag-col').hasClass('cols-middle')) {
+
+				var index = jQuery(this).parents('.um-admin-drag-rowsub').find('.um-admin-drag-col').index(jQuery(this).parents('.um-admin-drag-col'));
+
+				console.log("index is " + index);
+				
 				if ( jQuery(this).parents('.um-admin-drag-rowsub').find('.um-admin-drag-col').length == 3 ) {
-				in_column = 3;
+					in_column = 2; 
+					console.log('we in column 2, bish!');
+
+				} else if ( jQuery(this).parents('.um-admin-drag-rowsub').find('.um-admin-drag-col').length == 4 ) {
+
+					console.log("index is " + jQuery('.um-admin-drag-col').index(jQuery(this).parents('.um-admin-drag-col')));
+
+					if (index == 1) {
+						in_column = 2;
+					} else if (index == 2) {
+						in_column = 3;
+					}
+
+				} else if ( jQuery(this).parents('.um-admin-drag-rowsub').find('.um-admin-drag-col').length == 5 ) {
+					in_column = 3;
+				} else if ( jQuery(this).parents('.um-admin-drag-rowsub').find('.um-admin-drag-col').length == 6 ) {
+					
+					console.log("index is " + jQuery('.um-admin-drag-col').index(jQuery(this).parents('.um-admin-drag-col')));
+
+					if (jQuery('.um-admin-drag-col').index(jQuery(this).parents('.um-admin-drag-col')) == 2) {
+						in_column = 3;
+					} else if (jQuery('.um-admin-drag-col').index(jQuery(this).parents('.um-admin-drag-col')) == 3) {
+						console.log('column 4')
+						in_column = 4;
+					}
+				}
+
+
+			} else if ( jQuery(this).parents('.um-admin-drag-col').hasClass('cols-last') ) {
+				console.log('col last');
+				console.log(jQuery(this).parents('.um-admin-drag-rowsub').find('.um-admin-drag-col').length);
+
+				if ( jQuery(this).parents('.um-admin-drag-rowsub').find('.um-admin-drag-col').length == 3 ) {
+					in_column = 3;
+				} else if ( jQuery(this).parents('.um-admin-drag-rowsub').find('.um-admin-drag-col').length == 4 ) {
+					in_column = 4;
+					console.log('we in column 4, bish!');
+				} else if ( jQuery(this).parents('.um-admin-drag-rowsub').find('.um-admin-drag-col').length == 5 ) {
+					in_column = 5;
+				} else if ( jQuery(this).parents('.um-admin-drag-rowsub').find('.um-admin-drag-col').length == 6 ) {
+					in_column = 6;
 				} else {
-				in_column = 2;
+					in_column = 2; console.log('we in column 2, bish!');
 				}
 			} else {
-				in_column = 1;
+				in_column = 1; console.log('we in column 1, bish!');
 			}
 		}
+
+	// } else if ( row.find('.um-admin-drag-col').length == 5 ) {
+	// 	row.find('.um-admin-drag-col:eq(1)').addClass('cols-second');
+	// 	row.find('.um-admin-drag-col:eq(2)').addClass('cols-middle');
 		
 		if ( jQuery(this).parents('.um-admin-drag-group').length ) {
 			in_group = jQuery(this).parents('.um-admin-drag-fld.um-field-type-group').data('key');
 		} else {
 			in_group = '';
 		}
+
+		console.log('in row ' + in_row);
+		console.log('in col ' + in_column);
 		
 		jQuery('.um-col-demon-settings').data('in_row', in_row);
 		jQuery('.um-col-demon-settings').data('in_sub_row', in_sub_row);
@@ -365,30 +497,109 @@ jQuery(document).ready(function() {
 				row.find('.um-admin-drag-col-dynamic').append('<div class="um-admin-drag-col"></div>');
 			}
 			
-			row.find('.um-admin-drag-col').removeClass('cols-1 cols-2 cols-3 cols-last cols-middle');
+			row.find('.um-admin-drag-col').removeClass('cols-1 cols-2 cols-3 cols-4 cols-5 cols-6 cols-last cols-middle cols-second cols-third cols-forth cols-fifth');
 			row.find('.um-admin-drag-col').addClass('cols-' + row.find('.um-admin-drag-col').length );
 			row.find('.um-admin-drag-col:last').addClass('cols-last');
 			
-			if ( row.find('.um-admin-drag-col').length == 3 ) {row.find('.um-admin-drag-col:eq(1)').addClass('cols-middle');}
+			if ( row.find('.um-admin-drag-col').length == 3 ) {
+				row.find('.um-admin-drag-col:eq(1)').addClass('cols-middle');
+			} else if ( row.find('.um-admin-drag-col').length == 4 ) {
+				row.find('.um-admin-drag-col:eq(1)').addClass('cols-middle');
+				row.find('.um-admin-drag-col:eq(2)').addClass('cols-middle');
+			} else if ( row.find('.um-admin-drag-col').length == 5 ) {
+				row.find('.um-admin-drag-col:eq(1)').addClass('cols-second');
+				row.find('.um-admin-drag-col:eq(2)').addClass('cols-middle');
+				row.find('.um-admin-drag-col:eq(3)').addClass('cols-forth');
+			} else if ( row.find('.um-admin-drag-col').length == 6 ) {
+				row.find('.um-admin-drag-col:eq(1)').addClass('cols-second');
+				row.find('.um-admin-drag-col:eq(2)').addClass('cols-third cols-middle');
+				row.find('.um-admin-drag-col:eq(3)').addClass('cols-forth cols-middle');
+				row.find('.um-admin-drag-col:eq(4)').addClass('cols-fifth');
+				console.log('Middle, bitch!')
+			}
 		
 		} else if ( needed_cols < 0 ) {
-		
-			needed_cols = needed_cols + 3;
-			if ( needed_cols == 2 ) {
-				row.find('.um-admin-drag-col:first').append( row.find('.um-admin-drag-col.cols-last').html() );
-				row.find('.um-admin-drag-col.cols-last').remove();
+			
+			if (needed_cols == -1) {
+
+				if ( row.find('.um-admin-drag-col').length == 2 ) {
+					row.find('.um-admin-drag-col:first').append( row.find('.um-admin-drag-col.cols-last').html() );
+
+					row.find('.um-admin-drag-col.cols-last').remove();
+				} else if ( row.find('.um-admin-drag-col').length == 3 ) {
+					row.find('.um-admin-drag-col:nth-child(2)').append( row.find('.um-admin-drag-col.cols-last').html() );
+
+					row.find('.um-admin-drag-col.cols-last').remove();
+				} else if ( row.find('.um-admin-drag-col').length == 4 ) {
+					row.find('.um-admin-drag-col:nth-child(3)').append( row.find('.um-admin-drag-col.cols-last').html() );
+
+					row.find('.um-admin-drag-col.cols-last').remove();
+				} else if ( row.find('.um-admin-drag-col').length == 5 ) {
+					row.find('.um-admin-drag-col.cols-forth').append( row.find('.um-admin-drag-col.cols-last').html() );
+
+					row.find('.um-admin-drag-col.cols-last').remove();
+				} else if ( row.find('.um-admin-drag-col').length == 6 ) {
+					row.find('.um-admin-drag-col.cols-fifth').append( row.find('.um-admin-drag-col.cols-last').html() );
+
+					row.find('.um-admin-drag-col.cols-last').remove();
+				}
+			} else {
+				needed_cols = needed_cols + 6;
+			
+				console.log('I need '+ needed_cols +' columns.');
+	
+				if ( needed_cols == 5 ) {
+					row.find('.um-admin-drag-col.cols-fifth').append( row.find('.um-admin-drag-col.cols-last').html() );
+	
+					row.find('.um-admin-drag-col.cols-last').remove();
+				}
+				if ( needed_cols == 4 ) {
+					row.find('.um-admin-drag-col:nth-child(3)').append( row.find('.um-admin-drag-col.cols-forth').html() );
+					row.find('.um-admin-drag-col:nth-child(3)').append( row.find('.um-admin-drag-col.cols-fifth').html() );
+					row.find('.um-admin-drag-col:nth-child(3)').append( row.find('.um-admin-drag-col.cols-last').html() );
+	
+					row.find('.um-admin-drag-col.cols-fifth').remove();
+					row.find('.um-admin-drag-col.cols-last').remove();
+				}
+				if ( needed_cols == 3 ) {
+					row.find('.um-admin-drag-col:nth-child(2)').append( row.find('.um-admin-drag-col.cols-forth').html() );
+					row.find('.um-admin-drag-col:nth-child(2)').append( row.find('.um-admin-drag-col.cols-fifth').html() );
+					row.find('.um-admin-drag-col:nth-child(2)').append( row.find('.um-admin-drag-col.cols-last').html() );
+	
+					row.find('.um-admin-drag-col.cols-forth').remove();
+					row.find('.um-admin-drag-col.cols-fifth').remove();
+					row.find('.um-admin-drag-col.cols-last').remove();
+				}
+				if ( needed_cols == 2 ) {
+					row.find('.um-admin-drag-col:nth-child(1)').append( row.find('.um-admin-drag-col.cols-middle').html() );
+					row.find('.um-admin-drag-col:nth-child(1)').append( row.find('.um-admin-drag-col.cols-forth').html() );
+					row.find('.um-admin-drag-col:nth-child(1)').append( row.find('.um-admin-drag-col.cols-fifth').html() );
+					row.find('.um-admin-drag-col:nth-child(1)').append( row.find('.um-admin-drag-col.cols-last').html() );
+	
+					row.find('.um-admin-drag-col.cols-fifth').remove();
+					row.find('.um-admin-drag-col.cols-forth').remove();
+					row.find('.um-admin-drag-col.cols-last').remove();
+					row.find('.um-admin-drag-col.cols-middle').remove();
+				}
+				if ( needed_cols == 1 ) {
+					console.log('I need 1 column.');
+					row.find('.um-admin-drag-col:first').append( row.find('.um-admin-drag-col.cols-last').html() );
+					row.find('.um-admin-drag-col:first').append( row.find('.um-admin-drag-col.cols-fifth').html() );
+					row.find('.um-admin-drag-col:first').append( row.find('.um-admin-drag-col.cols-forth').html() );
+					row.find('.um-admin-drag-col:first').append( row.find('.um-admin-drag-col.cols-middle').html() );
+					row.find('.um-admin-drag-col:first').append( row.find('.um-admin-drag-col.cols-second').html() );	
+	
+					row.find('.um-admin-drag-col.cols-second').remove();
+					row.find('.um-admin-drag-col.cols-fifth').remove();
+					row.find('.um-admin-drag-col.cols-forth').remove();
+					row.find('.um-admin-drag-col.cols-last').remove();
+					row.find('.um-admin-drag-col.cols-middle').remove();
+				}
 			}
-			if ( needed_cols == 1 ) {
-				row.find('.um-admin-drag-col:first').append( row.find('.um-admin-drag-col.cols-last').html() );
-				row.find('.um-admin-drag-col:first').append( row.find('.um-admin-drag-col.cols-middle').html() );
-				row.find('.um-admin-drag-col.cols-last').remove();
-				row.find('.um-admin-drag-col.cols-middle').remove();
-			}
 		
-			row.find('.um-admin-drag-col').removeClass('cols-1 cols-2 cols-3 cols-last cols-middle');
+			row.find('.um-admin-drag-col').removeClass('cols-1 cols-2 cols-3 cols-4 cols-5 cols-6 cols-last cols-middle cols-second cols-third cols-forth cols-fifth');
 			row.find('.um-admin-drag-col').addClass('cols-' + row.find('.um-admin-drag-col:visible').length );
 			row.find('.um-admin-drag-col:last').addClass('cols-last');
-			
 		}
 		
 		if ( allow_update_via_col_click == true ) {
@@ -405,4 +616,13 @@ jQuery(document).ready(function() {
 	}).promise().done( function(){ allow_update_via_col_click = true; } );
 	
 	UM_Rows_Refresh();
+
+
+	var doc = new jsPDF();
+	var specialElementHandlers = {
+			'#editor': function (element, renderer) {
+					return true;
+			}
+	};
 });
+
